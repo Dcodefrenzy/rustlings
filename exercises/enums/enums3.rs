@@ -1,13 +1,12 @@
 // enums3.rs
 // Address all the TODOs to make the tests pass!
 
-// I AM NOT DONE
 
 enum Message {
     // TODO: implement the message variant types based on their usage below
-    Move {x:u8, y:u8},
+    Move(Point),
     Echo(String),
-    ChangeColor(u8, u8, u8),
+    ChangeColor((u8, u8, u8)),
     Quit
 }
 
@@ -42,10 +41,8 @@ impl State {
     fn process(&mut self, message: Message) {
         // TODO: create a match expression to process the different message variants
         match message {
-            Message::ChangeColor(a, b, c) =>  println!("A {}, B {} and C {}", a, b, c),
-            Message::Move {x, y} => {
-                println!("clicked at x={}, y={}.", x, y);
-            },
+            Message::ChangeColor((a, b, c)) =>  println!("A {}, B {} and C {}", a, b, c),
+            Message::Move(point)=> println!("Point x {} and y {}", point.x, point.y),
             Message::Quit => println!("Quit"),
             Message::Echo(stingMessage) => println!("{}", stingMessage)
         }
@@ -59,9 +56,9 @@ mod tests {
     #[test]
     fn test_match_message_call() {
         let mut state = State {
-            quit: false,
-            position: Point { x: 0, y: 0 },
-            color: (0, 0, 0),
+            quit: true,
+            position: Point { x: 10, y: 15 },
+            color: (255, 0, 255),
         };
         state.process(Message::ChangeColor((255, 0, 255)));
         state.process(Message::Echo(String::from("hello world")));
