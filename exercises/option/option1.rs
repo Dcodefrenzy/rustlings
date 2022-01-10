@@ -9,13 +9,15 @@ fn print_number(maybe_number: Option<u16>) {
 }
 
 fn main() {
-    print_number(13);
-    print_number(99);
+    let num1 = Some(13);
+    let num2 = Some(99);
+    print_number(num1);
+    print_number(num2);
 
-    let mut numbers: [Option<u16>; 5];
+    let numbers: [Option<u16>; 5];
     for iter in 0..5 {
-        let number_to_add: u16 = {
-            ((iter * 1235) + 2) / (4 * 16)
+        let number_to_add:  Option<u16> = {
+            Some(((iter * 1235) + 2) / (4 * 16))
         };
 
         numbers[iter as usize] = number_to_add;
