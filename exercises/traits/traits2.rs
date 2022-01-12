@@ -13,10 +13,20 @@
 // I AM NOT DONE
 
 trait AppendBar {
-    fn append_bar(self) -> Self;
+    fn append_bar(&mut self) -> Self;
 }
 
 //TODO: Add your code here
+impl AppendBar for Vec<String> {
+    fn append_bar(&mut self) -> Self {
+        println!("{:?}", self)
+    }
+} 
+
+fn main() {
+    is_vec_pop_eq_bar();
+}
+
 
 #[cfg(test)]
 mod tests {
